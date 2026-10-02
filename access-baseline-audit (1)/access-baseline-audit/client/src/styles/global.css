@@ -1,0 +1,153 @@
+:root {
+  --color-text: #1a1a1a;
+  --color-bg: #ffffff;
+  --color-primary: #7a1f1f; /* checked: 7.7:1 against white, passes AA and AAA for normal text */
+  --color-border: #d0d0d0;
+  --color-on-time: #1c6b3a; /* 5.2:1 on white */
+  --color-delayed: #8a5a00; /* 5.1:1 on white */
+  --color-disrupted: #b3261e; /* 5.9:1 on white */
+  --color-suspended: #4a4a4a; /* 8.6:1 on white */
+  --focus-ring: 3px solid #0b57d0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+/* Never remove focus outlines without replacing them with something at
+   least as visible. This is the single most common keyboard-accessibility
+   regression: a CSS reset that ships `outline: none` with no substitute. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-primary);
+  color: white;
+  text-decoration: none;
+  transition: top 0.15s ease-in-out;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
+}
+
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+}
+
+.site-header__brand {
+  font-weight: 700;
+  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-header__tagline {
+  margin: 0;
+  color: #444;
+  flex-basis: 100%;
+}
+
+.site-header__nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.alert-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.alert-card {
+  border: 1px solid var(--color-border);
+  border-left-width: 6px;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.alert-card--on_time {
+  border-left-color: var(--color-on-time);
+}
+.alert-card--delayed {
+  border-left-color: var(--color-delayed);
+}
+.alert-card--disrupted {
+  border-left-color: var(--color-disrupted);
+}
+.alert-card--suspended {
+  border-left-color: var(--color-suspended);
+}
+
+.alert-card__route {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.alert-card__status {
+  margin: 0 0 0.5rem;
+}
+
+.alert-card__message {
+  margin: 0;
+  color: #333;
+}
+
+footer {
+  padding: 1.5rem;
+  color: #555;
+  font-size: 0.875rem;
+  border-top: 1px solid var(--color-border);
+}
